@@ -1,0 +1,15 @@
+#!/usr/bin/env ruby
+#
+# Modifies the default commit message before it is set.
+# Fancies up "Merge," replaces local branch name, and removes 'remote-tracking branch.'
+
+commit_msg_file = ARGV[0]
+branch_name     = `git branch | grep '*'`.gsub(/[* |\n]/,"")
+
+if message = open(commit_msg_file).read
+  open(commit_msg_file, 'w') do |f|
+    f.puts message.gsub("Merge", ":part_alternation_mark:erge")
+      .gsub(" remote-tracking branch", "")
+      .gsub(branch_name, "this fine-ass branch right here")
+  end
+end
