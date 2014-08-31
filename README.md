@@ -1,7 +1,8 @@
 githooks
 ========
 
-These are the git hooks I use. Drop them into your repo's `.git/hooks` directory if you feel like it.
+These are the git hooks I use. Drop them into your repo's `.git/hooks` directory if you feel like it,
+or [make the hooks global](#making-hooks-global) for all your projects.
 
 commit-msg
 ----------
@@ -32,4 +33,21 @@ $ git merge origin/branch-i-want
 will produce the default message:
 ```
 :part_alternation_mark:erge 'origin/branch-i-want' into this fine-ass branch right here
+```
+
+Making hooks global
+-------------------
+
+To [make hooks global](https://coderwall.com/p/jp7d5q) for all your projects:
+
+```
+$ git config --global init.templatedir '~/.git-templates'
+$ git clone https://github.com/juliamae/githooks ~/.git-templates
+```
+
+Any newly initialized repo will have the hooks. To add them to an existing repo:
+
+```
+$ cd ~/code/repo_madness # Your existing repo.
+$ git init
 ```
