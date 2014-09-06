@@ -31,7 +31,7 @@ class DescriptionPrepender
   # Private: Extracts the branch description for the current branch from the repo config.
   def description
     @description ||= repo.
-      config["branch.#{repo.branches.find { |branch| branch.head? }.name}.description"].
+      config["branch.#{branch_name(repo)}.description"].
       gsub(/\n/,"")
   end
 end
