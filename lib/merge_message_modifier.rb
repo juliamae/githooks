@@ -21,7 +21,7 @@ class MergeMessageModifier
     open(commit_message_file, 'w') do |f|
       f.puts message.gsub("Merge", ":part_alternation_mark:erge")
         .gsub(" remote-tracking branch", "")
-        .gsub(branch_name, "this fine-ass branch right here")
+        .gsub(branch_name(repo), "this fine-ass branch right here")
     end
   end
 
@@ -29,9 +29,5 @@ class MergeMessageModifier
 
   def message
     @message ||= open(commit_message_file).read
-  end
-
-  def branch_name
-    repo.branches.find { |branch| branch.head? }.name
   end
 end
