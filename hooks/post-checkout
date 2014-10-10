@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+require File.expand_path('../hooks_helper', __FILE__)
+
+branch_checkout = ARGV[2] == "1"
+EmojiDescriptor.perform Rugged::Repository.new(".") if branch_checkout
