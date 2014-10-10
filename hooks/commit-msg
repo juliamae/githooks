@@ -1,16 +1,4 @@
 #!/usr/bin/env ruby
-#
-# Prepends the branch description to each commit message, after the commit message has been set.
-#
-# Add Branch description with git branch --edit-description branch-name
+require File.expand_path('../hooks_helper', __FILE__)
 
-commit_msg_file = ARGV[0]
-branch_name     = `git branch | grep '*'`.gsub(/[* |\n]/,"")
-description     = `git config branch.#{branch_name}.description`.gsub(/\n/,"")
-
-unless description.empty?
-	message = open(commit_msg_file).read
-	open(commit_msg_file, 'w') do |f|
-		f.puts "#{description} #{message}"
-	end
-end
+DescriptionPrepender.perform ARGV[0], Rugged::Repository.new(".")
